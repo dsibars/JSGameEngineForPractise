@@ -141,7 +141,7 @@ class Player extends AssetActor {
         let isMoving = false;
         let nSpriteAction = false;
 
-        if (this.getGameContext().getInputManager().isInputActive(this.getPlayerLeftInput())) {
+        if (this.isLeftInputActive()) {
             // Movemos a la izquierda
             this.moveX(this._speed * -1);
 
@@ -150,7 +150,7 @@ class Player extends AssetActor {
             this._direction = CONS.direction.LEFT;
 
             isMoving = true;
-        } else if (this.getGameContext().getInputManager().isInputActive(this.getPlayerRightInput())) {
+        } else if (this.isRightInputActive()) {
             this.moveX(this._speed);
 
             nSpriteAction = this.getSpriteActionRight();
@@ -160,7 +160,7 @@ class Player extends AssetActor {
             isMoving = true;
         }
 
-        if (this.getGameContext().getInputManager().isInputActive(this.getPlayerUpInput())) {
+        if (this.isUpInputActive()) {
             this.moveY(this._speed * -1);
 
             if (nSpriteAction === false) {
@@ -171,7 +171,7 @@ class Player extends AssetActor {
             this._direction = CONS.direction.UP;
 
             isMoving = true;
-        } else if (this.getGameContext().getInputManager().isInputActive(this.getPlayerDownInput())) {
+        } else if (this.isDownInputActive()) {
             this.moveY(this._speed);
 
             if (nSpriteAction === false) {
@@ -189,6 +189,22 @@ class Player extends AssetActor {
         }
 
         this.setAnimate(isMoving);
+    }
+
+    isLeftInputActive() {
+        return this.getGameContext().getInputManager().isInputActive(this.getPlayerLeftInput());
+    }
+
+    isRightInputActive() {
+        return this.getGameContext().getInputManager().isInputActive(this.getPlayerRightInput());
+    }
+
+    isUpInputActive() {
+        return this.getGameContext().getInputManager().isInputActive(this.getPlayerUpInput());
+    }
+
+    isDownInputActive() {
+        return this.getGameContext().getInputManager().isInputActive(this.getPlayerDownInput());
     }
 
     /**

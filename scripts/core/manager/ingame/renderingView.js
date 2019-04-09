@@ -22,10 +22,13 @@ class RenderingView {
             yf: this._y + this._height
         };
 
-        this._numCellXDraws = Math.ceil(this._width / this._scenario.cellwidth) + 1;
-        this._numCellYDraws = Math.ceil(this._height / this._scenario.cellheight) + 1;
-        this._numCellXDrawsH = Math.ceil(this._width / this._scenario.cellwidth / 2);
-        this._numCellYDrawsH = Math.ceil(this._width / this._scenario.cellwidth / 2);
+        if (this._scenario.cellwidth) {
+            this._numCellXDraws = Math.ceil(this._width / this._scenario.cellwidth) + 1;
+            this._numCellYDraws = Math.ceil(this._height / this._scenario.cellheight) + 1;
+            this._numCellXDrawsH = Math.ceil(this._width / this._scenario.cellwidth / 2);
+            this._numCellYDrawsH = Math.ceil(this._width / this._scenario.cellwidth / 2);
+        }
+
 
         this._drawLimits = false;
     }
@@ -89,89 +92,6 @@ class RenderingView {
         actorDrawPosx = this.editActorDrawPositionX(actorDrawPosx);
         actorDrawPosy = this.editActorDrawPositionY(actorDrawPosy);
 
-        // INICIO METODO ANTIGUO
-//        // Hemos de calcular la primera celda a dibujar
-//        let currentCellx = Math.floor(scenarioDrawArea.x / this._scenario.cellwidth);
-//        let currentCelly = Math.floor(scenarioDrawArea.y / this._scenario.cellheight);
-//
-//        // Hemos de calcular a partir de que posición pintar
-//        let currentDrawx = this._x + (scenarioDrawArea.x % this._scenario.cellwidth) * -1;
-//        let currentDrawy = this._y + (scenarioDrawArea.y % this._scenario.cellheight) * -1;
-//
-//        let firstCellDrawX = 0;
-//        let firstCellDrawY = 0;
-//
-//        if(currentDrawx-this._x < 0) {
-//            firstCellDrawX = (currentDrawx-this._x) * -1;
-//            currentDrawx = this._x;
-//        }
-//        if(currentDrawy-this._y < 0) {
-//            firstCellDrawY = (currentDrawy-this._y) * -1;
-//            currentDrawy = this._y;
-//        }
-//
-//
-//        if(this.onPreDraw) {
-//            this.onPreDraw(actorDrawPosx, actorDrawPosy, scenarioDrawArea);
-//        }
-//
-//        while(currentDrawy < this._height + this._y) {
-//            //creamos una variable temporal para la celda x, ya que esta se irá reiniciando para cada columna pintada
-//            let currentDrawxT = currentDrawx;
-//            let currentCellxT = currentCellx;
-//            let firstCellDrawXT = firstCellDrawX;
-//
-//
-//            while(currentDrawxT < this._width + this._x) {
-//                // Obtenemos los datos de la celda actual
-//                let cellData = this._scenario.getCellData(currentCellxT, currentCelly);
-//
-//                if(cellData) {
-//                    let actionData = cellData.sprite.getActionData(cellData.action);
-//
-//                    //TODO de momento, no hay animación para los sprites de las celdas.
-//                    let curFrame = 0;
-//
-//                    let frameData = actionData.getFrameData(curFrame);
-//
-//                    let cellXCut = 0;
-//                    let cellYCut = 0;
-//
-//                    if(currentDrawxT > this._width  + this._x - cellData.sprite._spriteWidth) {
-//                        cellXCut =  cellData.sprite._spriteWidth - (this._width + this._x - currentDrawxT);
-//                    }
-//
-//                    if(currentDrawy > this._height + this._y - cellData.sprite._spriteHeight) {
-//                        cellYCut =  cellData.sprite._spriteHeight - (this._height + this._y - currentDrawy);
-//                    }
-//
-//                    this._manager.getGameContext().getLayer(cellData.layer?cellData.layer:0).drawImage(
-//                            cellData.sprite._img, frameData.xi+firstCellDrawXT, frameData.yi+firstCellDrawY,
-//                            cellData.sprite._spriteWidth-cellXCut, cellData.sprite._spriteHeight-cellYCut,
-//                            currentDrawxT, currentDrawy,
-//                            this._scenario.cellwidth-cellXCut, this._scenario.cellheight-cellYCut
-//                    );
-//
-//                }
-//
-//                currentDrawxT+=this._scenario.cellwidth - firstCellDrawXT;
-//                currentCellxT++;
-//
-//                firstCellDrawXT = 0;
-//
-//            }
-//
-//            currentDrawy+=this._scenario.cellheight-firstCellDrawY;
-//            currentCelly++;
-//
-//            firstCellDrawY = 0;
-//        }
-//
-//
-//        //Dibujamos el fondo
-//        this._drawBackground(scenarioDrawArea);
-        //FIN METODO ANTIGUO
-
         // Dibujamos las capas del escenario
         let layerImages = this._scenario.getLayerImages();
         for (let i = 0; i < this._manager.getGameContext().getLayerCount(); i++) {
@@ -224,61 +144,6 @@ class RenderingView {
             ctxBkg.drawImage(bkgImageCanvas, scenarioDrawArea.x, scenarioDrawArea.y, scenarioDrawArea.w, scenarioDrawArea.h,
                 this._x, this._y, this._width, this._height);
         }
-
-        // Forma anterior
-//        let background = this._scenario.getDefinition().background;
-//
-//        if(background) {
-//            let ctxBkg = this._manager.getGameContext().getLayer(background.layer);
-//
-//            if(this._scenario.getBackgroundImage()) {
-//                let img = this._scenario.getBackgroundImage();
-//
-//                let fromImageX = scenarioDrawArea.x < img.width? scenarioDrawArea.x : scenarioDrawArea.x % img.width;
-//                let fromImageY = scenarioDrawArea.y < img.height? scenarioDrawArea.y : scenarioDrawArea.y % img.height;
-//
-//                let toImageX = img.width;
-//                let toImageY = img.height;
-//
-//                let drawedY = 0;
-//
-//                let currentX = 0, currentY = 0;
-//
-//                while(drawedY < this._height) {
-//                    let drawedX = 0;
-//                    let fromImageXtmp = fromImageX, toImageXtmp = toImageX;
-//
-//                    while(drawedX < this._width) {
-//                        ctxBkg.drawImage(img, fromImageXtmp, fromImageY, toImageXtmp, toImageY,
-//                              drawedX+this._x, drawedY+this._y, toImageXtmp, toImageY);
-//
-//                        drawedX += (toImageXtmp - fromImageXtmp);
-//
-//                        if(drawedX > this._width - img.width ) {
-//                            fromImageXtmp = 0;
-//                            toImageXtmp = this._width - drawedX;
-//                        } else if(fromImageXtmp > 0) {
-//                            fromImageXtmp = 0;
-//                            toImageXtmp = img.width;
-//                        }
-//                    }
-//
-//                    drawedY += (toImageY - fromImageY);
-//                    if(drawedY > this._height - img.height ) {
-//                        fromImageY = 0;
-//                        toImageY = this._height - drawedY;
-//                    } else if(fromImageY > 0) {
-//                        fromImageY = 0;
-//                        toImageY = img.height;
-//                    }
-//                }
-//            } else if(background.color) {
-//                ctxBkg.fillStyle = background.color;
-//
-//                ctxBkg.fillRect(this._x, this._y, this._width, this._height);
-//
-//            }
-//        }
     }
 
     /**

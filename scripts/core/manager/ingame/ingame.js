@@ -101,32 +101,34 @@ class InGame extends StatusManager {
         let distanceU = actor._y;
         let distanceD = this._scenario.height - collisionBoundsD.y;
 
-        for (let cell of this._scenario._elements.values()) {
-            if (cell.solid === false) continue;
+        if (this._scenario.elements) {
+            for (let cell of this._scenario._elements.values()) {
+                if (cell.solid === false) continue;
 
-            if (Utils.hasCollission(collisionBoundsL, cell.bounds)) {
-                let curDiff = actor._x - (cell.bounds.x + cell.bounds.w);
+                if (Utils.hasCollission(collisionBoundsL, cell.bounds)) {
+                    let curDiff = actor._x - (cell.bounds.x + cell.bounds.w);
 
-                if (curDiff < distanceL) {
-                    distanceL = curDiff;
-                }
-            } else if (Utils.hasCollission(collisionBoundsR, cell.bounds)) {
-                let curDiff = cell.bounds.x - collisionBoundsR.x;
+                    if (curDiff < distanceL) {
+                        distanceL = curDiff;
+                    }
+                } else if (Utils.hasCollission(collisionBoundsR, cell.bounds)) {
+                    let curDiff = cell.bounds.x - collisionBoundsR.x;
 
-                if (curDiff < distanceR) {
-                    distanceR = curDiff;
-                }
-            } else if (Utils.hasCollission(collisionBoundsU, cell.bounds)) {
-                let curDiff = actor._y - (cell.bounds.y + cell.bounds.h);
+                    if (curDiff < distanceR) {
+                        distanceR = curDiff;
+                    }
+                } else if (Utils.hasCollission(collisionBoundsU, cell.bounds)) {
+                    let curDiff = actor._y - (cell.bounds.y + cell.bounds.h);
 
-                if (curDiff < distanceU) {
-                    distanceU = curDiff;
-                }
-            } else if (Utils.hasCollission(collisionBoundsD, cell.bounds)) {
-                let curDiff = cell.bounds.y - collisionBoundsD.y;
+                    if (curDiff < distanceU) {
+                        distanceU = curDiff;
+                    }
+                } else if (Utils.hasCollission(collisionBoundsD, cell.bounds)) {
+                    let curDiff = cell.bounds.y - collisionBoundsD.y;
 
-                if (curDiff < distanceD) {
-                    distanceD = curDiff;
+                    if (curDiff < distanceD) {
+                        distanceD = curDiff;
+                    }
                 }
             }
         }

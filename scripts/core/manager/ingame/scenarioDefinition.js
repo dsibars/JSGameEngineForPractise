@@ -1,40 +1,19 @@
 'use strict';
 
-class ScenarioDefinition {
+class ScenarioDefinition extends SimpleScenarioDefinition {
     constructor(definition, cellwidth, cellheight, isDynamic) {
-        this._def = definition;
+        super(definition, definition.scenarioDefinition[0].length * cellwidth, definition.scenarioDefinition.length * cellheight, isDynamic);
+
         this.cellwidth = cellwidth;
         this.cellheight = cellheight;
         this.numCellsX = definition.scenarioDefinition[0].length;
         this.numCellsY = definition.scenarioDefinition.length;
-        this.width = this.numCellsX * this.cellwidth;
-        this.height = this.numCellsY * this.cellheight;
+
         this._cellDefs = new Map();
-
-        this._layerImages = false;
-
-        if (isDynamic) {
-            this._dynamic = true;
-        } else {
-            this._dynamic = false;
-        }
-
         for (let key in this._def.cellDefinitions) {
             if (this._def.cellDefinitions.hasOwnProperty(key)) {
                 this._cellDefs.set(key, this._def.cellDefinitions[key]);
             }
-        }
-
-        this._bkgImage = false;
-
-        if (definition.background.image) {
-            this._bkgImageTmp = new Image();
-            this._bkgImageTmp.onload = () => {
-                this._bkgImage = this._bkgImageTmp;
-                this._bkgImageTmp = false;
-                this._refreshScenarioBackground();
-            };
-            this._bkgImageTmp.src = definition.background.image;
         }
 
         this._elements = new Map();
@@ -68,10 +47,6 @@ class ScenarioDefinition {
         }
     }
 
-    getDefinition() {
-        return this._def;
-    }
-
     _isCellContentEmpty(cellContent) {
         return cellContent === '' || cellContent === '$';
     }
@@ -98,10 +73,6 @@ class ScenarioDefinition {
         if (cellContent === undefined) return false;
 
         return cellContent;
-    }
-
-    getBackgroundImage() {
-        return this._bkgImage;
     }
 
     /**
@@ -133,29 +104,7 @@ class ScenarioDefinition {
         return cells;
     }
 
-    act() {
-        if (!this._layerImages || this._dynamic) {
-            this._generateScenarioImages();
-        }
-    }
-
-    getLayerImages() {
-        return this._layerImages;
-    }
-
-    getBackgroundCanvas() {
-        return this._layerImages[this._def.background.layer || 0];
-    }
-
     _generateScenarioImages() {
-        if (!this._layerImages) {
-            this._layerImages = [];
-
-            for (let i = 0; i < this._ctx._layers.length; i++) {
-                this._layerImages.push(false);
-            }
-        }
-
         if (this._def.background) {
             this._refreshScenarioBackground();
         }
@@ -175,7 +124,7 @@ class ScenarioDefinition {
 
             let canvas = this._layerImages[cellData.layer ? cellData.layer : 0];
 
-            if (canvas == false) {
+            if (!canvas) {
                 canvas = document.createElement("canvas");
                 canvas.width = this.width;
                 canvas.height = this.height;
@@ -189,43 +138,6 @@ class ScenarioDefinition {
                 cellData.bounds.x, cellData.bounds.y, cellData.bounds.w, cellData.bounds.h);
 
             elementCellNext = elementCellIt.next();
-        }
-    }
-
-    _refreshScenarioBackground() {
-        if (!this._layerImages) return;
-
-        let canvas = this._layerImages[this._def.background.layer || 0];
-
-        if (!canvas) {
-            canvas = document.createElement("canvas");
-            canvas.width = this.width;
-            canvas.height = this.height;
-
-            this._layerImages[this._def.background.layer || 0] = canvas;
-        }
-
-        let ctx = canvas.getContext('2d');
-
-        if (this._bkgImage) {
-
-            let drawedY = 0;
-
-            while (drawedY < this.height) {
-                let drawedX = 0;
-
-                while (drawedX < this.width) {
-                    ctx.drawImage(this._bkgImage, drawedX, drawedY);
-
-                    drawedX += this._bkgImage.width;
-                }
-
-                drawedY += this._bkgImage.height;
-            }
-        } else if (this._def.background.color) {
-            ctx.fillStyle = this._def.background.color;
-
-            ctx.fillRect(0, 0, this.width, this.height);
         }
     }
 }
