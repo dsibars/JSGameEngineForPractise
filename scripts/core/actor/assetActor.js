@@ -1,9 +1,12 @@
+
+import Actor from './actor.js';
+import { CONS } from '../constants.js';
 'use strict';
 
 /**
  * Clase que gestiona a un Actor basado en un sprite
  */
-class AssetActor extends Actor {
+export default class AssetActor extends Actor {
 
     /**
      * Constructor

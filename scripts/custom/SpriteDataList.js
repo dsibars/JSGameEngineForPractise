@@ -1,9 +1,12 @@
+
+import SpriteData from '../core/sprite/spriteData.js';
+import { CONS } from '../core/constants.js';
 'use strict';
 
 /**
  * LISTADO DE DEFINICIONES DE LOS SPRITES EXISTENTES
  */
-var SPRITES = Array();
+export const SPRITES = Array();
 
 SPRITES[CONS.sprites.PRINCE] = new SpriteData('img/personatges_conYsin_pistola.png', 32, 32, function () {
     SPRITES[CONS.sprites.PRINCE].addActionData(CONS.spriteAction.QUIET_D, 0, 1, 1, 1, false);

@@ -1,3 +1,5 @@
+import { CONS } from '../core/constants.js';
+
 /**
  *
  */

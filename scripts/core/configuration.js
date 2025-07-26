@@ -1,9 +1,11 @@
+
+import { CONS } from './constants.js';
 'use strict';
 
 /**
  * Configuración del Juego por defecto
  */
-var CONFIG =
+export const CONFIG =
     {
         /**
          * Ancho de pantalla

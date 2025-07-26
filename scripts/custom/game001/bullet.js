@@ -1,6 +1,9 @@
+
+import Player from '../../core/actor/player.js';
+import { CONS } from '../../core/constants.js';
 'use strict';
 
-class Bullet extends Player {
+export default class Bullet extends Player {
     constructor(context, nlayer, x, y, width, direction, speed, collides) {
         super(context, nlayer, -1, x + 0.25 * width, y + 0.25 * width, width * 0.5, width * 0.5, true, false, speed);
 

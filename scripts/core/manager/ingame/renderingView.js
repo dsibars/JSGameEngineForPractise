@@ -1,6 +1,8 @@
+
+import { Utils } from '../../util/utils.js';
 'use strict';
 
-class RenderingView {
+export default class RenderingView {
     constructor(statusManager, scenarioDefinition, actor, x, y, width, height, drawableActors) {
         this._manager = statusManager;
         this._scenario = scenarioDefinition;

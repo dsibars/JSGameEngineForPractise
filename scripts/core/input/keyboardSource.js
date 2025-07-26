@@ -1,9 +1,15 @@
+
+import keypress from '../lib/keypress.js';
+import { CONFIG } from '../configuration.js';
+import { LOGGER } from '../logger.js';
+import { CONS } from '../constants.js';
+import InputSource from './inputSource.js';
 'use strict';
 
-class KeyboardSource extends InputSource {
+export default class KeyboardSource extends InputSource {
     constructor(manager) {
         super(manager);
-        this._listener = new window.keypress.Listener();
+        this._listener = new keypress.Listener();
     }
 
     init() {

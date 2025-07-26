@@ -1,6 +1,6 @@
 'use strict';
 
-class Actor {
+export default class Actor {
     /**
      * Constructor
      * @param context contexto del juego

@@ -3,7 +3,7 @@
 /**
  * Clase que define una accion de un sprite, almacenando información de todos sus frames
  */
-class SpriteAction {
+export default class SpriteAction {
     /**
      * Constructor
      * @param actionId: id de la acción

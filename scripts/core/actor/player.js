@@ -1,3 +1,6 @@
+
+import AssetActor from './assetActor.js';
+import { CONS } from '../constants.js';
 'use strict';
 
 /**
@@ -6,7 +9,7 @@
  * Al final de la clase se detallan los métodos a sobreescribir para implementar la lógica del jugador.
  * Si se sobreescribe cualquier otro método, se debe llamar siempre al método padre, o replicar el código para no romper su funcionamiento.
  */
-class Player extends AssetActor {
+export default class Player extends AssetActor {
     /**
      * Constructor
      * @param context contexto del juego

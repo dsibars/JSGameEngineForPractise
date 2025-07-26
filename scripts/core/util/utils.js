@@ -3,7 +3,7 @@
 /**
  * Agrupación de métodos útiles varios
  */
-var Utils = {
+export const Utils = {
     /**
      *  Genera un identificador único
      */

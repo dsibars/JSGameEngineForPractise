@@ -1,4 +1,4 @@
-var mainMenuConfig = {
+export const mainMenuConfig = {
     items: [
         {label: 'Single Player', newStatus: CONS.status.GAME_SINGLE},
         {label: 'Multiplayer', newStatus: CONS.status.GAME_MULTI},

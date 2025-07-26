@@ -1,4 +1,4 @@
-var SC_TESTMULTIPLAYER = {
+export const SC_TESTMULTIPLAYER = {
 
 
     background: {

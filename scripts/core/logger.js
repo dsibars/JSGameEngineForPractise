@@ -1,9 +1,12 @@
+
+import { CONS } from './constants.js';
+import { CONFIG } from './configuration.js';
 'use strict';
 
 /**
  * Clase para escribir trazas de log.
  */
-class Log {
+export class Log {
 
     constructor() {
     }
@@ -99,4 +102,4 @@ class Log {
  * INSTANCIA DEL LOGGER. Es necesario que exista.
  * Se puede sobreescribir esta propiedad para usar un Logger propio.
  */
-var LOGGER = new Log();
+export const LOGGER = new Log();

@@ -4,7 +4,7 @@
  * Clase base para gestionar un estado del juego (CONS.status).
  * Todas las subclases han de sobreescribir los métodos act, draw, start, pause, resume, exit.
  */
-class StatusManager {
+export default class StatusManager {
     /**
      * @param context instancia de la clase game (contexto del juego)
      */

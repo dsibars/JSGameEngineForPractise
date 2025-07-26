@@ -3,7 +3,7 @@
 /**
  * Definición de constantes para el juego
  */
-var CONS =
+export const CONS =
     {
         // Niveles de log
         logLevel: {

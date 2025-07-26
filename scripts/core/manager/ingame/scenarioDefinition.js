@@ -1,6 +1,6 @@
 'use strict';
 
-class ScenarioDefinition {
+export default class ScenarioDefinition {
     constructor(definition, cellwidth, cellheight, isDynamic) {
         this._def = definition;
         this.cellwidth = cellwidth;
