@@ -1,6 +1,12 @@
+
+import StatusManager from '../statusManager.js';
+import RenderingView from './renderingView.js';
+import ScenarioDefinition from './scenarioDefinition.js';
+import { Utils } from '../../util/utils.js';
+import { CONS } from '../../constants.js';
 'use strict';
 
-class InGame extends StatusManager {
+export default class InGame extends StatusManager {
     constructor(context) {
         super(context);
         this._actorList = Array();

@@ -1,10 +1,12 @@
+
+import SpriteAction from './spriteAction.js';
 'use strict';
 
 /**
  * Clase para gestionar una imagen sprite.
  *
  */
-class SpriteData {
+export default class SpriteData {
     /**
      * Constructor
      * @param imageUrl: url de la imagen con los sprites

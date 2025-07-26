@@ -1,4 +1,4 @@
-var SC_TESTJUMP001 = {
+export const SC_TESTJUMP001 = {
 
 
     background: {

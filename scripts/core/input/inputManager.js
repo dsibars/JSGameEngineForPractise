@@ -1,9 +1,15 @@
+
+import { CONFIG } from '../configuration.js';
+import { CONS } from '../constants.js';
+import { LOGGER } from '../logger.js';
+import { Utils } from '../util/utils.js';
+import KeyboardSource from './keyboardSource.js';
 'use strict';
 
 /**
  * Clase gestora para las entradas del juego.
  */
-class InputManager {
+export default class InputManager {
     /**
      * Constructor
      * @param inputSource clase gestora del origen de la entrada (subclase de inputSource)

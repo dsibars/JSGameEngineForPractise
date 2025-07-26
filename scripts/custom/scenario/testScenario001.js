@@ -1,4 +1,4 @@
-var SC_TEST001 = {
+export const SC_TEST001 = {
 
 
     background: {

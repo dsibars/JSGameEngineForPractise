@@ -1,9 +1,13 @@
+
+import { CONFIG } from './configuration.js';
+import { LOGGER } from './logger.js';
+import InputManager from './input/inputManager.js';
 'use strict';
 
 /**
  * Clase principal que gestiona todo el juego.
  */
-class Game {
+export default class Game {
     /**
      * Constructor del juego
      * @param layers cantidad de capas de dibujado que tendrá el juego

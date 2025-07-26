@@ -1,6 +1,16 @@
+
+import InGame from '../../core/manager/ingame/ingame.js';
+import ScenarioDefinition from '../../core/manager/ingame/scenarioDefinition.js';
+import GameRenderingView from './gameRenderingView.js';
+import GamePlayer from './gamePlayer.js';
+import EnemyBear from './enemyBear.js';
+import { CONFIG } from '../../core/configuration.js';
+import { CONS } from '../../core/constants.js';
+import { LOGGER } from '../../core/logger.js';
+import { SPRITES } from '../SpriteDataList.js';
 'use strict';
 
-class GameSM extends InGame {
+export default class GameSM extends InGame {
     constructor(context, use_multiplayer, multiplayer_vertical, singleplayer_margin, numEnemies) {
         super(context);
 

@@ -1,6 +1,11 @@
+
+import Player from '../../core/actor/player.js';
+import { CONS } from '../../core/constants.js';
+import { SPRITES } from '../SpriteDataList.js';
+import { LOGGER } from '../../core/logger.js';
 'use strict';
 
-class EnemyBear extends Player {
+export default class EnemyBear extends Player {
     constructor(context, nlayer, x, y, width, speed) {
         super(context, nlayer, -1, x, y, width, width, true, SPRITES[CONS.sprites.RAICHU], speed);
         LOGGER.debug(`Oso ubicado en posicion ${x},${y}`);

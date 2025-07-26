@@ -1,6 +1,12 @@
+
+import Player from '../../core/actor/player.js';
+import { CONFIG } from '../../core/configuration.js';
+import { CONS } from '../../core/constants.js';
+import Bomb from './bomb.js';
+import Bullet from './bullet.js';
 'use strict';
 
-class GamePlayer extends Player {
+export default class GamePlayer extends Player {
     constructor(context, numPlayer, x, y, width, height, collides, spriteData, speed) {
         super(context, 1, numPlayer, x, y, width, height, collides, spriteData, speed);
 

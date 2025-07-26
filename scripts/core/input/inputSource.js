@@ -1,3 +1,5 @@
+
+import { CONS } from '../constants.js';
 'use strict';
 
 /**
@@ -6,7 +8,7 @@
  * Todas las subclases deben sobreescribir el metodo "getType", que ha de devolver
  * un valor de CONS.inputType, y opcionalmente el metodo init, que inicializa la clase
  */
-class InputSource {
+export default class InputSource {
     constructor() {
         this._inited = false;
     }

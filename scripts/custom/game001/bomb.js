@@ -1,6 +1,10 @@
+
+import AssetActor from '../../core/actor/assetActor.js';
+import { CONS } from '../../core/constants.js';
+import { SPRITES } from '../SpriteDataList.js';
 'use strict';
 
-class Bomb extends AssetActor {
+export default class Bomb extends AssetActor {
     constructor(context, nlayer, x, y, width, explotes) {
         super(context, nlayer, x, y, width, width * 2, false, SPRITES[CONS.sprites.BOMB]);
         this._explotes = explotes;

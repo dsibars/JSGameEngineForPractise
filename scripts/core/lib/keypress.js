@@ -1133,10 +1133,8 @@ Combo options available and their defaults:
         define([], function () {
             return keypress;
         });
-    } else if (typeof exports !== "undefined" && exports !== null) {
-        exports.keypress = keypress;
-    } else {
-        window.keypress = keypress;
     }
+
+export default keypress;
 
 }).call(this);

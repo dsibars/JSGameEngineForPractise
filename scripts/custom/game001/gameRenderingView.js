@@ -1,6 +1,8 @@
+
+import RenderingView from '../../core/manager/ingame/renderingView.js';
 'use strict';
 
-class GameRenderingView extends RenderingView {
+export default class GameRenderingView extends RenderingView {
     constructor(statusManager, scenarioDefinition, actor, x, y, width, height, drawableActors) {
         super(statusManager, scenarioDefinition, actor, x, y, width, height, drawableActors);
         this._lastLightRadius = this._actor.lightRadius;

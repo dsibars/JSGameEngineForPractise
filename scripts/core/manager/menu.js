@@ -1,9 +1,15 @@
+
+import StatusManager from './statusManager.js';
+import { Utils } from '../util/utils.js';
+import { CONFIG } from '../configuration.js';
+import { CONS } from '../constants.js';
+import { LOGGER } from '../logger.js';
 'use strict';
 
 /**
  * Clase para gestionar el menú principal
  */
-class Menu extends StatusManager {
+export default class Menu extends StatusManager {
     /**
      * Constructor
      * @param context instancia de la clase game (contexto del juego)

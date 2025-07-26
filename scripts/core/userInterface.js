@@ -1,6 +1,6 @@
 'use strict';
 
-class userInterface {
+export default class userInterface {
     constructor(context) {
         this._ctx = context;
     }

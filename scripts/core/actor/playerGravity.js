@@ -1,9 +1,11 @@
+
+import Player from './player.js';
 'use strict';
 
 /**
  * Clase abstracta que gestiona a un Jugador para escenarios con gravedad.
  */
-class PlayerGravity extends Player {
+export default class PlayerGravity extends Player {
     /**
      * Constructor
      * @param context contexto del juego
